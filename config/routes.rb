@@ -1,5 +1,8 @@
 SampleApp::Application.routes.draw do
-  get "users/new"
+# get REST: get, post, put and delete
+  resources :users
+
+# get "users/new" = outdated
 
   root to: 'static_pages#home'
 
