@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user]) 
   	#equivalent to@user = User.new(name: "Foo Bar", email: "foo@invalid" ...)
+  	
   	if @user.save
   		flash[:success] = "Welcome to the Sample App"
   		redirect_to @user
