@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   	#equivalent to@user = User.new(name: "Foo Bar", email: "foo@invalid" ...)
   	
   	if @user.save
+      sign_in @user
   		flash[:success] = "Welcome to the Sample App"
   		redirect_to @user
   	else
