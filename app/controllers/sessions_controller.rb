@@ -6,7 +6,7 @@ def create
 	user = User.find_by_email(params[:session][:email])
 	if user && user.authenticate(params[:session][:password])
 		sign_in user
-		redirect_to user
+		redirect_back_or user
 	else
 		# to flash only once for rendered pages use flash.now instead of flash
 		flash.now[:error] = 'Invalid email/password combination' 
