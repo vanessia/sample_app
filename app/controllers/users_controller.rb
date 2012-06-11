@@ -4,11 +4,12 @@ class UsersController < ApplicationController
   before_filter :admin_user,      only: :destroy
 
   def new
-  	@user = User.new
+    	@user = User.new
   end
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def create
@@ -54,14 +55,7 @@ class UsersController < ApplicationController
   end
 
   private
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_path, notice: "Please sign in" unless signed_in?
-      # same as flash[:notice] = "Please sign in" redirect_to signin_path
-      end
-    end
-
+  
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
